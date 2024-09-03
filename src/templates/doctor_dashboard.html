@@ -1,0 +1,67 @@
+{% extends 'doctor_base.html' %}
+
+{% block sidebar %} 
+<a class="list-group-item p-3 dark-purple text-white" style="color: black;" href="/doctor">Main DashBoard</a>
+<a class="list-group-item p-3 " style="color: black" href="/doctor/query_patients">Query Patients</a>
+<a class="list-group-item p-3 " style="color: black" href="/doctor/add_prescription">Assign Prescriptions</a>
+{% endblock %}
+
+{% block main_content %}
+<h3 class="mt-4">Patients</h3>
+    {% if patients_treated|length == 0 %}
+        <p>No Patients to show</p>
+    {% else %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="dark-purple text-white">
+                <tr>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Patient Age</th>
+                    <th scope="col">Patient Gender</th>
+                    <th scope="col">Patient Address</th>
+                    <th scope="col">Patient Personal Contact</th>
+                    <th scope="col">Patient Emergency Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients_treated %}
+                <tr>
+                    {% for field in patient %}
+                    <td>{{ field }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    <h3 class="mt-4">Your Appointments</h3>
+    {% if appointments|length == 0 %}
+        <p>All Free</p>
+    {% else %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="dark-purple text-white">
+                <tr>
+                    <th scope="col">Appointment ID</th>
+                    <th scope="col">Appointment Date</th>
+                    <th scope="col">Appointment Time</th>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Patient Age</th>
+                    <th scope="col">Patient Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    {% for field in appointment %}
+                    <td>{{ field }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}

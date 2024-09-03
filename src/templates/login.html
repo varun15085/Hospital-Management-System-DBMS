@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block bg_custom %}class="vh-100 gradient-custom"{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <div class="content-section">
+              <form action="{{ url_for('auth.login') }}" method="POST">
+                <fieldset class="form-group">
+                  <div class="mb-md-5 mt-md-4 pb-5">
+                    <h1>Login</h1>
+                    <div class="form-outline form-white mb-4">
+                      <label for="role">Role</label>
+                      <select class="form-control form-select" id="role" name="role">
+                        <option value="Administrator">Administrator</option>
+                        <option value="Doctor">Doctor</option>
+                        <option value="DE_Operator">Data Entry Operator</option>
+                        <option value="FD_Operator">Front Desk Operator</option>
+                      </select>
+                    </div>
+                    <div class="form-outline form-white mb-4">
+                      <label for="username">Username</label>
+                      <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                    </div>
+                    <div class="form-outline form-white mb-4">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

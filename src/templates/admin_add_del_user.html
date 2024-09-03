@@ -1,0 +1,116 @@
+{% extends 'admin_base.html' %}
+
+{% block sidebar %}
+<a class="list-group-item p-3" href="/admin">Main DashBoard</a>
+<a class="list-group-item p-3 dark-purple text-white" href="/admin/edit_user">Add/Delete User</a>
+<a class="list-group-item p-3" href="/admin/add_room">Register a Room</a>
+{% endblock %}
+
+{% block main_content %}
+<div class="d-flex justify-content-between align-items-center">
+  <h3 class="mt-4">View {{user_type}}s</h3>
+  <!-- add user from here -->
+  <button type="button" class="btn cerise text-white" data-bs-toggle="modal" data-bs-target="#user">
+    Add {{user_type}}
+  </button>
+</div>
+<!-- modal defined here -->
+<div class="modal fade" id="user" aria-labelledby="label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="label">Add {{user_type}}</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3" method="post">
+          {{form.hidden_tag()}}
+          <div class="col-md-6">
+            {{ form.username.label(for="inputEmail4", class="form-label") }}
+            {{ form.username(class="form-control", type="email", placeholder="Enter Email", id="inputEmail4") }}
+            {% for error in form.username.errors %}
+            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+          </div>
+          <div class="col-md-6">
+            {{ form.password1.label(for="inputPassword4", class="form-label") }}
+            {{ form.password1(class="form-control", type="password", id="inputPassword4", placeholder="8 or more characters") }}
+            {% for error in form.password1.errors %}
+            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+          </div>
+          <div class="col-md-6">
+            {{ form.name.label(class="form-label", for="name") }}
+            {{ form.name(class="form-control", type="text", id="name") }}
+            {% for error in form.name.errors %}
+            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+          </div>
+          <div class="col-md-6">
+            {{ form.gender.label(class="form-label", for="gender") }}
+            {{ form.gender(class="form-control", type="text", id="gender")}}
+            {% for error in form.gender.errors %}
+            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+          </div>
+          <div class="col-md-6">
+            {{ form.age.label(class="form-label", for="age") }}
+            {{ form.age(class="form-control", type="number", id="age") }}
+            {% for error in form.age.errors %}
+            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+          </div>
+          <div class="col-md-6">
+            {{ form.contact_number.label(class="form-label", for="ph_number") }}
+            {{ form.contact_number(class="form-control", id="ph_number") }}
+            {% for error in form.contact_number.errors %}
+            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+          </div>
+          <div class="col-12">
+            {{ form.address.label(class="form-label", for="inputAddress") }}
+            {{ form.address(class="form-control", type="text", id="inputAddress", placeholder="Street, Locality, City, State") }}
+            {% for error in form.address.errors %}
+            <span class="help-block">{{ error }}</span>
+            {% endfor %}
+          </div>
+          <div class="col-12">
+            {{ form.submit(class="btn cerise text-white") }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if user_type_list|length == 0 %}
+<p>No {{user_type}} to delete</p>
+{% else %}
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="dark-purple text-white">
+      <tr>
+        <th scope="col">{{user_type}} ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Age</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Contact No.</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user_ in user_type_list %}
+      <tr>
+        {% for field in user_ %}
+        <td>{{ field }}</td>
+        {% endfor %}
+        <td><a href="/admin/delete/{{ user_type }}/{{ user_[0] }}" class="btn cerise text-white">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

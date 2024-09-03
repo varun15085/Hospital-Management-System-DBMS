@@ -1,0 +1,34 @@
+{% extends 'admin_base.html' %}
+
+{% block sidebar %}
+<a class="list-group-item p-3" href="/admin">Main DashBoard</a>
+<a class="list-group-item p-3" href="/admin/edit_user">Add/Delete User</a>
+<a class="list-group-item p-3 dark-purple text-white" href="/admin/add_room">Register a Room</a>
+{% endblock %}
+
+{% block main_content %}
+<h1 class="mt-4">Register a Room</h1>
+
+<div class="container">
+  <form class="row g-3" method="post">
+    {{form.hidden_tag()}}
+    <div class="col-md-6">
+      {{ form.num.label(for="room", class="form-label") }}
+      {{ form.num(class="form-control", type="text", placeholder="Enter Room Number", id="room") }}
+      {% for error in form.num.errors %}
+      <span class="help-block">{{ error }}</span>
+      {% endfor %}
+    </div>
+    <div class="col-md-6">
+      {{ form.floor.label(for="floor", class="form-label") }}
+      {{ form.floor(class="form-control", type="text", id="floor", placeholder="Enter Floor Number") }}
+      {% for error in form.floor.errors %}
+      <span class="help-block">{{ error }}</span>
+      {% endfor %}
+    </div>
+    <div class="col-12">
+      {{ form.submit(class="btn cerise text-white") }}
+    </div>
+  </form>
+</div>
+{% endblock %}

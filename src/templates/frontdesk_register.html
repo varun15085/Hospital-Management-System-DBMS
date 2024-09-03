@@ -1,0 +1,64 @@
+{% extends 'frontdesk_base.html' %}
+
+{% block sidebar %}
+<a class="list-group-item p-3" style="color: black;" href="/frontdesk">Main DashBoard</a>
+<a class="list-group-item p-3 dark-purple text-white" style="color: black" href="/frontdesk/register">Register Patient</a>
+<a class="list-group-item p-3" style="color: black" href="/frontdesk/admit">Admit Patient</a>
+<a class="list-group-item p-3" style="color: black" href="/frontdesk/discharge">Discharge Patient</a>
+<a class="list-group-item p-3" style="color: black" href="/frontdesk/appointment_schedule">Schedule Appointment</a>
+
+{% endblock %}
+
+{% block main_content %}
+<h1 class="mt-4">Register Patient</h1>
+<div class="container">
+  <form class="row g-3" method="post">
+    {{form.hidden_tag()}}
+    <div class="col-md-12">
+      {{ form.name.label(class="form-label", for="name") }}
+      {{ form.name(class="form-control", type="text", id="name") }}
+      {% for error in form.name.errors %}
+      <span class="help-block">{{ error }}</span>
+      {% endfor %}
+    </div>
+    <div class="col-md-6">
+      {{ form.gender.label(class="form-label", for="gender") }}
+      {{ form.gender(class="form-control", type="text", id="gender")}}
+      {% for error in form.gender.errors %}
+      <span class="help-block">{{ error }}</span>
+      {% endfor %}
+    </div>
+    <div class="col-md-6">
+      {{ form.age.label(class="form-label", for="age") }}
+      {{ form.age(class="form-control", type="number", id="age") }}
+      {% for error in form.age.errors %}
+      <span class="help-block">{{ error }}</span>
+      {% endfor %}
+    </div>
+    <div class="col-md-6">
+      {{ form.contact_number.label(class="form-label", for="ph_number") }}
+      {{ form.contact_number(class="form-control", id="ph_number") }}
+      {% for error in form.contact_number.errors %}
+      <span class="help-block">{{ error }}</span>
+      {% endfor %}
+    </div>
+    <div class="col-md-6">
+      {{ form.emergency_contact.label(class="form-label", for="ph_number") }}
+      {{ form.emergency_contact(class="form-control", id="ph_number") }}
+      {% for error in form.contact_number.errors %}
+      <span class="help-block">{{ error }}</span>
+      {% endfor %}
+    </div>
+    <div class="col-12">
+      {{ form.address.label(class="form-label", for="inputAddress") }}
+      {{ form.address(class="form-control", type="text", id="inputAddress", placeholder="Street, Locality, City, State") }}
+      {% for error in form.address.errors %}
+      <span class="help-block">{{ error }}</span>
+      {% endfor %}
+    </div>
+    <div class="col-12">
+      {{ form.submit(class="btn cerise text-white") }}
+    </div>
+  </form>
+</div>
+{% endblock %}

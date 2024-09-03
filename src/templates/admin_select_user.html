@@ -1,0 +1,24 @@
+{% extends 'admin_base.html' %}
+
+{% block sidebar %}
+<a class="list-group-item p-3" href="/admin">Main DashBoard</a>
+<a class="list-group-item dark-purple text-white p-3" href="/admin/edit_user">Add/Delete User</a>
+<a class="list-group-item p-3" href="/admin/add_room">Register a Room</a>
+{% endblock %}
+
+{% block main_content %}
+<h1 class="mt-4">View User</h1>
+<div class="container">
+  <form method="post">
+    {{ form.hidden_tag() }}
+    <p>
+      {{form.users(size="1", class="form-control")}}
+    </p>
+    <div class="form-group row">
+      <div class="offset-sm-4 col-sm-8">
+        {{ form.submit(class="btn cerise text-white") }}
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

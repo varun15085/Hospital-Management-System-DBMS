@@ -1,0 +1,44 @@
+{% extends 'frontdesk_base.html' %}
+
+{% block sidebar %} 
+<a class="list-group-item p-3" style="color: black;" href="/frontdesk">Main DashBoard</a>
+    <a class="list-group-item p-3" style="color: black" href="/frontdesk/register">Register Patient</a>
+    <a class="list-group-item p-3 dark-purple text-white" style="color: black" href="/frontdesk/admit">Admit Patient</a>
+    <a class="list-group-item p-3" style="color: black" href="/frontdesk/discharge">Discharge Patient</a>
+    <a class="list-group-item p-3" style="color: black" href="/frontdesk/appointment_schedule">Schedule Appointment</a>
+{% endblock %}
+
+{% block main_content %}
+    <h1 class="mt-4">Admit Patient</h1>
+    {% if patients|length == 0 %}
+        <p>No patients to admit</p>
+    {% else %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="dark-purple text-white">
+                <tr>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Contact No.</th>
+                    <th scope="col">Emergency No.</th>
+                    <th scope="col">Admit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                <tr>
+                    {% for field in patient %}
+                    <td>{{ field }}</td>
+                    {% endfor %}
+                    <td><a href="/frontdesk/admit/{{ patient[0] }}" class="btn cerise text-white">Admit</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    
+{% endblock %}

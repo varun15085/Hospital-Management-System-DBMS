@@ -1,0 +1,59 @@
+{% extends 'dataentry_base.html' %}
+
+{% block sidebar %} 
+<a class="list-group-item p-3 " style="color: black;" href="/dataentry">Main DashBoard</a>
+<a class="list-group-item p-3 dark-purple text-white" style="color: black" href="/dataentry/treatment">Add Treatment</a>
+<a class="list-group-item p-3 " style="color: black" href="/dataentry/test">Add Test Result</a>
+{% endblock %}
+
+
+{% block main_content %}
+<h1 class="mt-4">Add Treatment </h1>
+<div class = "container">
+    <form class="row g-3" method="post" enctype="multipart/form-data">
+      {{form.hidden_tag()}}
+      <div class="col-12">
+        {{form.category(size="1", class="form-control")}}
+      </div>
+      <div class="col-md-12">
+        {{ form.treatment_date.label(class="form-label", for="date") }}
+        {{ form.treatment_date(class="form-control", type="text", id="date") }}
+        {% for error in form.treatment_date.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="col-md-6">
+        {{ form.patient.label(class="form-label", for="patient") }}
+        {{ form.patient(class="form-control", type="text", id="patient",value=patient,readonly=true)}}
+        {% for error in form.patient.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="col-md-6">
+        {{ form.doctor.label(class="form-label", for="doctor") }}
+        {{ form.doctor(class="form-control", type="number", id="doctor", value=doctor, readonly=true) }}
+        {% for error in form.doctor.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="col-12">
+        {{ form.details.label(class="form-label", for="inputAddress") }}
+        {{ form.details(class="form-control", type="text", id="inputAddress", placeholder="Enter treatment information") }}
+        {% for error in form.details.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="col-12">
+        {{ form.file_upload.label(class="form-label", for="ph_number") }}
+        {{ form.file_upload(class="form-control", id="ph_number") }}
+        {% for error in form.file_upload.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="col-12">
+        {{ form.submit(class="btn cerise text-white") }}
+      </div>
+    </form>
+</div>
+
+{% endblock %}

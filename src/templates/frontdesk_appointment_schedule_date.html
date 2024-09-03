@@ -1,0 +1,21 @@
+{% extends 'frontdesk_base.html' %}
+
+{% block sidebar %} 
+<a class="list-group-item p-3" style="color: black;" href="/frontdesk">Main DashBoard</a>
+    <a class="list-group-item p-3" style="color: black" href="/frontdesk/register">Register Patient</a>
+    <a class="list-group-item p-3" style="color: black" href="/frontdesk/admit">Admit Patient</a>
+    <a class="list-group-item p-3" style="color: black" href="/frontdesk/discharge">Discharge Patient</a>
+    <a class="list-group-item p-3 dark-purple text-white" style="color: black" href="/frontdesk/appointment_schedule">Schedule Appointment</a>
+{% endblock %}
+
+{% block main_content %}
+    <h1 class="mt-4">Select Date</h1>
+    <form action="/frontdesk/appointment_schedule/{{patient_id}}/{{doctor_id}}" method="post">
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" class="form-control" id="date" name="date" required>
+        </div>
+        <button type="submit" class="btn cerise text-white">Submit</button>
+    </form>
+    
+{% endblock %}

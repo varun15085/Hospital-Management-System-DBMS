@@ -1,0 +1,41 @@
+{% extends 'dataentry_base.html' %}
+
+{% block sidebar %} 
+<a class="list-group-item p-3 " style="color: black;" href="/dataentry">Main DashBoard</a>
+<a class="list-group-item p-3 dark-purple text-white" style="color: black" href="/dataentry/treatment">Add Treatment</a>
+<a class="list-group-item p-3 " style="color: black" href="/dataentry/test">Add Test Result</a>
+{% endblock %}
+
+{% block main_content %}
+<h1 class="mt-4">Select Patient for Adding Treatment</h1>
+    {% if patients|length == 0 %}
+        <p>No patients to add treatment</p>
+    {% else %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="dark-purple text-white">
+                <tr>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Contact No.</th>
+                    <th scope="col">Emergency No.</th>
+                    <th scope="col">Add Treatment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                <tr>
+                    {% for field in patient %}
+                    <td>{{ field }}</td>
+                    {% endfor %}
+                    <td><a href="/dataentry/treatment/{{ patient[0] }}" class="btn cerise text-white">Add Treatment</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}

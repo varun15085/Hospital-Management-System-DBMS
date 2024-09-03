@@ -1,0 +1,93 @@
+{% extends 'dataentry_base.html' %}
+
+{% block sidebar %} 
+<a class="list-group-item p-3 dark-purple text-white" style="color: black;" href="/dataentry">Main DashBoard</a>
+<a class="list-group-item p-3 " style="color: black" href="/dataentry/treatment">Add Treatment</a>
+<a class="list-group-item p-3 " style="color: black" href="/dataentry/test">Add Test Result</a>
+{% endblock %}
+
+{% block main_content %}
+<h3 class="mt-4">Treatments</h3>
+    {% if treatments|length == 0 %}
+        <p>No Treatments to show</p>
+    {% else %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="dark-purple text-white">
+                <tr>
+                    <th scope="col">Treatment ID</th>
+                    <th scope="col">Treatment Date</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Doctor Name</th>
+                    <th scope="col">Patient Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for treatment in treatments %}
+                <tr>
+                    {% for field in treatment %}
+                    <td>{{ field }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    <h3 class="mt-4">Tests - Completed</h3>
+    {% if complete_tests|length == 0 %}
+        <p>No Completed tests to show to show</p>
+    {% else %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="dark-purple text-white">
+                <tr>
+                    <th scope="col">Test ID</th>
+                    <th scope="col">Test Date</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Body Part</th>
+                    <th scope="col">Results</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for test in complete_tests %}
+                <tr>
+                    {% for field in test %}
+                    <td>{{ field }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    <h3 class="mt-4">Tests - InComplete</h3>
+    {% if incomplete_tests|length == 0 %}
+        <p>No Incomplete tests to show</p>
+    {% else %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="dark-purple text-white">
+                <tr>
+                    <th scope="col">Test ID</th>
+                    <th scope="col">Test Date</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Body Part</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for test in incomplete_tests %}
+                <tr>
+                    {% for field in test %}
+                    <td>{{ field }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}
